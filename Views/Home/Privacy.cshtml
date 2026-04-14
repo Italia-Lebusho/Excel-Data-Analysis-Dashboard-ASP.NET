@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy & Contact Us";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 text-center mb-4">🔒 Privacy Policy</h1>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Section -->
+    <div class="row mb-5">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">📋 Our Commitment to Your Privacy</h3>
+                </div>
+                <div class="card-body">
+                    <div class="privacy-content">
+                        <h4 class="mb-3">Introduction</h4>
+                        <p class="lead">
+                            At PACOFS, we are committed to protecting your privacy and ensuring the security of your personal information. 
+                            This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our 
+                            Marketing Analysis.
+                        </p>
+
+                        <h4 class="mb-3 mt-4">Information We Collect</h4>
+                        <p>
+                            We collect information that you provide directly to us, including but not limited to:
+                        </p>
+                        <ul>
+                            <li>Ticket purchase information and transaction data</li>
+                            <li>Event attendance records and preferences</li>
+                            <li>Demographic information for analytical purposes</li>
+                            <li>Usage data and interaction with our portal</li>
+                        </ul>
+
+                        <h4 class="mb-3 mt-4">How We Use Your Information</h4>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide, maintain, and improve our services</li>
+                            <li>Analyze ticket sales trends and event performance</li>
+                            <li>Generate statistical reports and insights</li>
+                            <li>Enhance user experience and portal functionality</li>
+                            <li>Comply with legal obligations and protect our rights</li>
+                        </ul>
+
+                        <h4 class="mb-3 mt-4">Data Security</h4>
+                        <p>
+                            We implement appropriate technical and organizational security measures to protect your personal information 
+                            against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over 
+                            the Internet or electronic storage is 100% secure.
+                        </p>
+
+                        <h4 class="mb-3 mt-4">Data Retention</h4>
+                        <p>
+                            We retain your information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, 
+                            unless a longer retention period is required or permitted by law.
+                        </p>
+
+                        <h4 class="mb-3 mt-4">Your Rights</h4>
+                        <p>You have the right to:</p>
+                        <ul>
+                            <li>Access and receive a copy of your personal data</li>
+                            <li>Request correction of inaccurate or incomplete data</li>
+                            <li>Request deletion of your personal data</li>
+                            <li>Object to processing of your personal data</li>
+                            <li>Request restriction of processing your personal data</li>
+                        </ul>
+
+                        <h4 class="mb-3 mt-4">Changes to This Privacy Policy</h4>
+                        <p>
+                            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new 
+                            Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy 
+                            Policy periodically for any changes.
+                        </p>
+
+                        <div class="alert alert-info mt-4">
+                            <strong>Last Updated:</strong> @DateTime.Now.ToString("MMMM dd, yyyy")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="row mb-5">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">📞 Contact Us</h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead mb-4">
+                        Have questions about our Privacy Policy or need assistance? Feel free to reach out to our team members:
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-primary shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <div class="mb-3">
+                                        <div class="contact-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                                            👤
+                                        </div>
+                                    </div>
+                                    <h4 class="card-title text-primary mb-3">Italia Lebusho</h4>
+                                    <p class="card-text">
+                                        <a href="tel:0815351592" class="btn btn-primary btn-lg mt-2">
+                                            📞 081 535 1592
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-success shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <div class="mb-3">
+                                        <div class="contact-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                                            👤
+                                        </div>
+                                    </div>
+                                    <h4 class="card-title text-success mb-3">Palesa Dyasi</h4>
+                                    <p class="card-text">
+                                        <a href="tel:0789685241" class="btn btn-success btn-lg mt-2">
+                                            📞 078 968 5241
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-light mt-4">
+                        <h5 class="alert-heading">📧 Alternative Contact Methods</h5>
+                        <p class="mb-0">
+                            You can also reach us via email or visit our office during business hours (Monday - Friday, 8:00 AM - 4:30 PM).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .privacy-content h4 {
+        color: #0d6efd;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+    }
+
+    .privacy-content ul {
+        line-height: 2;
+    }
+
+    .privacy-content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .contact-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .contact-icon {
+        transform: scale(1.1);
+    }
+</style>

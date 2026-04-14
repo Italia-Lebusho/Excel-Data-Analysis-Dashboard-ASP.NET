@@ -1,0 +1,194 @@
+@model Markerting.Models.AnalyzeSetupViewModel
+@{
+    ViewData["Title"] = "Choose what to analyze";
+    var cur = Model.Current ?? new Markerting.Models.UserAnalysisRequest();
+}
+
+<div class="container-fluid px-0" style="max-width: 720px;">
+    <h1 class="h3 fw-semibold mb-2">What should we focus on?</h1>
+    <p class="text-muted mb-4">
+        File <strong>@Model.FileName</strong> · sheet <em>@Model.SheetName</em> · @Model.RowCount.ToString("N0") rows.
+        Pick a mode, map the columns, then run the dashboard.
+    </p>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <form asp-action="RunAnalysis" method="post" class="card shadow-sm border-0 mb-4">
+        @Html.AntiForgeryToken()
+        <div class="card-body">
+            <fieldset class="mb-4">
+                <legend class="form-label fw-semibold">Analysis mode</legend>
+                <div class="form-check">
+                    @if (cur.Goal == Markerting.Models.AnalysisGoalKind.Overview)
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g0" value="0" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g0" value="0" />
+                    }
+                    <label class="form-check-label" for="g0"><strong>Overview</strong> — scan all signals automatically (default exploration).</label>
+                </div>
+                <div class="form-check">
+                    @if (cur.Goal == Markerting.Models.AnalysisGoalKind.CompareGroups)
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g1" value="1" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g1" value="1" />
+                    }
+                    <label class="form-check-label" for="g1"><strong>Compare two groups</strong> — same text column, two values (optional numeric measure).</label>
+                </div>
+                <div class="form-check">
+                    @if (cur.Goal == Markerting.Models.AnalysisGoalKind.BreakdownByCategory)
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g2" value="2" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g2" value="2" />
+                    }
+                    <label class="form-check-label" for="g2"><strong>Breakdown by category</strong> — rank categories by count or sum.</label>
+                </div>
+                <div class="form-check">
+                    @if (cur.Goal == Markerting.Models.AnalysisGoalKind.TrendOverTime)
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g3" value="3" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" name="Goal" id="g3" value="3" />
+                    }
+                    <label class="form-check-label" for="g3"><strong>Trend over time</strong> — month-by-month using a date column.</label>
+                </div>
+            </fieldset>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold" for="CategoryColumn">Category column (text)</label>
+                <select name="CategoryColumn" id="CategoryColumn" class="form-select">
+                    <option value="">—</option>
+                    @foreach (var c in Model.Columns.Where(x => x.Kind == "Text"))
+                    {
+                        if (string.Equals(cur.CategoryColumn, c.Name, StringComparison.Ordinal))
+                        {
+                            <option value="@c.Name" selected>@c.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@c.Name">@c.Name</option>
+                        }
+                    }
+                </select>
+                <small class="text-muted">Used for compare and breakdown.</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold" for="MeasureColumn">Measure column (numeric, optional)</label>
+                <select name="MeasureColumn" id="MeasureColumn" class="form-select">
+                    <option value="">— None (use row counts only) —</option>
+                    @foreach (var c in Model.Columns.Where(x => x.Kind == "Number"))
+                    {
+                        if (string.Equals(cur.MeasureColumn, c.Name, StringComparison.Ordinal))
+                        {
+                            <option value="@c.Name" selected>@c.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@c.Name">@c.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold" for="DateColumn">Date column</label>
+                <select name="DateColumn" id="DateColumn" class="form-select">
+                    <option value="">—</option>
+                    @foreach (var c in Model.Columns.Where(x => x.Kind == "Date"))
+                    {
+                        if (string.Equals(cur.DateColumn, c.Name, StringComparison.Ordinal))
+                        {
+                            <option value="@c.Name" selected>@c.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@c.Name">@c.Name</option>
+                        }
+                    }
+                </select>
+                <small class="text-muted">Required only for <em>Trend over time</em>.</small>
+            </div>
+
+            <div class="row g-2 mb-4" id="compareValuesRow">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" for="CompareValueA">Compare value A</label>
+                    <input name="CompareValueA" id="CompareValueA" class="form-control" value="@cur.CompareValueA" placeholder="Exact label from sheet" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" for="CompareValueB">Compare value B</label>
+                    <input name="CompareValueB" id="CompareValueB" class="form-control" value="@cur.CompareValueB" placeholder="Exact label from sheet" />
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-accent btn-lg">Run analysis</button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model.Suggestions.Count > 0)
+    {
+        <details class="small text-muted mb-4">
+            <summary>Sample values (for copy-paste)</summary>
+            <ul class="mt-2 mb-0">
+                @foreach (var kv in Model.Suggestions.Take(4))
+                {
+                    <li><strong>@kv.Key</strong>: @string.Join(", ", kv.Value.Take(12))</li>
+                }
+            </ul>
+        </details>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function syncGoalPanels() {
+            const g = document.querySelector('input[name="Goal"]:checked')?.value ?? '0';
+            const compareRow = document.getElementById('compareValuesRow');
+            const cat = document.getElementById('CategoryColumn');
+            const dt = document.getElementById('DateColumn');
+            const a = document.getElementById('CompareValueA');
+            const b = document.getElementById('CompareValueB');
+            compareRow.style.display = (g === '1') ? '' : 'none';
+            if (g === '1') {
+                dt.value = '';
+                cat.closest('.mb-3').classList.remove('opacity-50');
+                dt.closest('.mb-3').classList.add('opacity-50');
+            } else if (g === '2') {
+                dt.value = '';
+                a.value = '';
+                b.value = '';
+                dt.closest('.mb-3').classList.add('opacity-50');
+                cat.closest('.mb-3').classList.remove('opacity-50');
+            } else if (g === '3') {
+                cat.value = '';
+                a.value = '';
+                b.value = '';
+                dt.closest('.mb-3').classList.remove('opacity-50');
+                cat.closest('.mb-3').classList.add('opacity-50');
+            } else {
+                dt.closest('.mb-3').classList.remove('opacity-50');
+                cat.closest('.mb-3').classList.remove('opacity-50');
+                a.value = '';
+                b.value = '';
+            }
+        }
+        document.querySelectorAll('input[name="Goal"]').forEach(r => r.addEventListener('change', syncGoalPanels));
+        syncGoalPanels();
+    </script>
+}

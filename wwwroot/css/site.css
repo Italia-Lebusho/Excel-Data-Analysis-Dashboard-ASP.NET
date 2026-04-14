@@ -1,0 +1,295 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  min-height: 100vh;
+  color: #0f172a;
+  background-color: #0b1220;
+  background-image:
+    radial-gradient(1200px 600px at 10% -10%, rgba(56, 189, 248, 0.35), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(99, 102, 241, 0.32), transparent 50%),
+    radial-gradient(800px 400px at 50% 100%, rgba(16, 185, 129, 0.12), transparent 45%),
+    linear-gradient(160deg, #0b1220 0%, #111827 40%, #0f172a 100%);
+  background-attachment: fixed;
+}
+
+.app-navbar {
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.96));
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25) !important;
+}
+
+.app-navbar .nav-link {
+  color: rgba(248, 250, 252, 0.88) !important;
+}
+
+.app-navbar .nav-link:hover {
+  color: #fff !important;
+}
+
+.surface-panel {
+  background-color: rgba(255, 255, 255, 0.94);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+@media (min-width: 992px) {
+  .surface-panel {
+    padding: 1.75rem 1.75rem;
+  }
+}
+
+.app-footer {
+  background: rgba(15, 23, 42, 0.35);
+  color: rgba(226, 232, 240, 0.85) !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.app-footer a {
+  color: #e2e8f0;
+}
+
+.bg-gradient-header {
+  background: linear-gradient(90deg, #2563eb, #6366f1 45%, #0ea5e9);
+}
+
+.btn-accent {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-accent:hover {
+  filter: brightness(1.06);
+  color: #fff;
+}
+
+.insight-story-card {
+  border-left: 4px solid #6366f1 !important;
+  background: linear-gradient(120deg, rgba(99, 102, 241, 0.06), rgba(255, 255, 255, 0));
+}
+
+/* Marketing Analysis Styles */
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.table-responsive {
+  border-radius: 0.375rem;
+}
+
+canvas {
+  max-height: 400px;
+}
+
+/* Animation Styles */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes counter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.6s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.6s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.8s ease-out;
+}
+
+.animate-counter {
+  animation: counter 1s ease-out;
+}
+
+.animate-card-1 {
+  animation: fadeInUp 0.5s ease-out;
+  animation-delay: 0.1s;
+  animation-fill-mode: both;
+}
+
+.animate-card-2 {
+  animation: fadeInUp 0.5s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.animate-card-3 {
+  animation: fadeInUp 0.5s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+}
+
+.animate-card-4 {
+  animation: fadeInUp 0.5s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+/* Hover animations */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Table row animations */
+.table tbody tr {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table tbody tr:hover {
+  transform: scale(1.01);
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Chart container animations */
+.card-body canvas {
+  animation: fadeIn 1s ease-in;
+}
